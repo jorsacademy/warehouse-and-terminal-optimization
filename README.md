@@ -1,4 +1,19 @@
-# Container Terminal Yard Optimization
+# Warehouse and Terminal Optimization
+
+<!-- portfolio-umbrella:start -->
+## Portfolio role
+
+This repository is the primary umbrella repository for this Jors Academy research area. Related projects have been consolidated under `projects/` so the methods, implementations, experiments, and case studies can be maintained and explored from one place.
+
+### Included projects
+
+- [`freighter-container-loading-optimization`](projects/freighter-container-loading-optimization/)
+- [`multi-period-warehouse-rental-lp-optimization`](projects/multi-period-warehouse-rental-lp-optimization/)
+- [`warehouse-multi-agent-robot-routing`](projects/warehouse-multi-agent-robot-routing/)
+- [`warehouse-order-packing-heuristics`](projects/warehouse-order-packing-heuristics/)
+
+Each consolidated project keeps its own files and a `SOURCE_REPOSITORY.md` provenance record. The snapshot preserves the source repository's default-branch files at consolidation time; repository-level history and metadata remain separate from the snapshot.
+<!-- portfolio-umbrella:end -->
 
 Mixed-integer linear programming (MILP) example for container terminal yard operations.
 
