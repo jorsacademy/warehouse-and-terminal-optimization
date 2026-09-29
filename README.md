@@ -5,6 +5,10 @@
 
 This repository is the primary umbrella repository for this Jors Academy research area. Related projects have been consolidated under `projects/` so the methods, implementations, experiments, and case studies can be maintained and explored from one place.
 
+### Native flagship
+
+The repository root contains the actively maintained **container terminal yard assignment and handling MILP** described below. The entries under `projects/` are consolidated companion projects.
+
 ### Included projects
 
 - [`freighter-container-loading-optimization`](projects/freighter-container-loading-optimization/)
