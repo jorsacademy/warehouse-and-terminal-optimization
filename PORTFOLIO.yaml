@@ -1,0 +1,16 @@
+schema_version: 1
+repository: warehouse-and-terminal-optimization
+role: umbrella
+axis: application
+area: warehouse-terminal
+status: active
+owner: jorsacademy
+projects:
+  - freighter-container-loading-optimization
+  - multi-period-warehouse-rental-lp-optimization
+  - warehouse-multi-agent-robot-routing
+  - warehouse-order-packing-heuristics
+conventions:
+  provenance_records: true
+  reproducibility_expected: true
+  benchmark_assumptions_documented: true
