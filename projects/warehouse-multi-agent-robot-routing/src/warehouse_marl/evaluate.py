@@ -6,7 +6,7 @@ from typing import Callable, Dict
 
 import numpy as np
 
-from .baselines import greedy_joint_policy, reservation_policy
+from .baselines import cbs_joint_policy, greedy_joint_policy, reservation_policy
 from .environment import WarehouseRoutingEnv
 
 
@@ -63,7 +63,7 @@ def main() -> None:
 
     policies: Dict[str, Callable] = {
         "greedy": greedy_joint_policy,
-        "reservation": reservation_policy,
+        "reservation": reservation_policy,\n        "cbs": cbs_joint_policy,
     }
     for name, policy in policies.items():
         metrics = evaluate_policy(policy, episodes=args.episodes, n_robots=args.robots)
