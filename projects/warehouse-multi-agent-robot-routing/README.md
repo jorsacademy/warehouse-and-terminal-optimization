@@ -54,6 +54,12 @@ Every robot independently moves along a Manhattan-shortest direction toward its 
 
 A simple one-step traffic reservation rule gives lower-index robots priority over proposed cells. It approximates warehouse right-of-way logic and demonstrates how coordination can improve over independent greedy routing without learning.
 
+### Conflict-Based Search (CBS)
+
+`cbs_joint_policy` adds a classical multi-agent path-finding baseline. The high level detects vertex and edge-swap conflicts and branches by adding agent-specific constraints. The low level replans the constrained agent with time-expanded A*. Agents are assumed to wait at their goal after arrival, and completed warehouse robots are fixed in place.
+
+Because warehouse tasks have pickup and drop-off phases, the policy uses **receding-horizon CBS**: at each decision epoch it solves MAPF from current positions to the robots' current targets and executes only the first joint move. This gives the RL benchmark a substantially stronger coordination reference than independent greedy motion or one-step reservation.
+
 ### MAPPO-style cooperative PPO
 
 `WarehouseMultiAgentEnv` adapts the joint dynamics to RLlib's `MultiAgentEnv` interface. `train_mappo.py` trains a shared PPO policy across homogeneous robots. Because all agents receive a global observation and share a cooperative reward, the setup is suitable for MAPPO-style centralized-training experiments.
@@ -113,7 +119,7 @@ pip install -e '.[rl]'
 python -m warehouse_marl.evaluate --episodes 100 --robots 3
 ```
 
-This compares independent greedy routing with the reservation heuristic using identical stochastic warehouse instances.
+This compares independent greedy routing, the one-step reservation heuristic, and receding-horizon CBS using identical stochastic warehouse instances.
 
 ## Train cooperative PPO / MAPPO-style policy
 
@@ -147,10 +153,10 @@ High-value extensions for academic or industrial work include:
 5. congestion-sensitive travel times,
 6. prioritized experience or curriculum learning as fleet size grows,
 7. centralized critic with local actor observations for a stricter MAPPO implementation,
-8. comparison with CBS, prioritized planning, min-cost flow, or OR-Tools assignment baselines,
+8. comparison with prioritized planning, PIBT/LaCAM, min-cost flow, or OR-Tools assignment baselines,
 9. digital-twin integration using live WMS/WES events,
 10. safety constraints and deadlock detection.
 
 ## Industrial-engineering interpretation
 
-This project sits at the intersection of operations research, warehouse control, robotics, simulation, and reinforcement learning. The important question is not whether RL can move robots through a grid; it is whether a learned policy improves **system-level throughput and congestion performance** against transparent dispatching/routing baselines under uncertainty.
+This project sits at the intersection of operations research, warehouse control, robotics, simulation, and reinforcement learning. The CBS baseline follows the classical conflict-based-search decomposition of Sharon et al. (Artificial Intelligence, 2015). The important question is not whether RL can move robots through a grid; it is whether a learned policy improves **system-level throughput and congestion performance** against transparent dispatching/routing baselines under uncertainty.

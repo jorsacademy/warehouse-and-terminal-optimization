@@ -4,7 +4,7 @@ from typing import Iterable
 
 import numpy as np
 
-from .environment import WarehouseRoutingEnv
+from .cbs import cbs_joint_policy\nfrom .environment import WarehouseRoutingEnv
 
 
 def _greedy_action(position, target) -> int:
